@@ -4,10 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 
 import { ExtensionContext, commands, window, workspace } from 'vscode';
-// import * as path from 'path';
-const migrationFolder = Date.now();
 import * as fs from 'fs';
 import DBMigrate = require('db-migrate');
+
 const projectName = workspace.rootPath;
 
 
@@ -26,31 +25,27 @@ export async function createFileMigration(numberTask: string) {
 
 	const optionCwd = { cwd: projectName };
 	const dbm = DBMigrate.getInstance(true, optionCwd, () => { });
-	await dbm.create(numberTask, migrationFolder);
-	openFileUpSql(String(projectName), numberTask);
+	await dbm.create(numberTask);
+	openFileUpSql();
 }
 
-function openFileUpSql(projectName: string, numberTask: string) {
+function openFileUpSql() {
 
-	const path = projectName + '/migrations/' + migrationFolder + '/sqls';
+	const pathSql = projectName + '/migrations/sqls';
 
-	fs.readdir(path, (err: Error, files: string[]) => {
+	fs.readdir(pathSql, (err: Error, files: string[]) => {
 
-		if (err) {
-			window.showInformationMessage(path);
-		}
 		if (files) {
-			let fileName = files.find(fileName =>
-				/-up\.sql/.test(fileName)
-			);
+			for (let i = files.length - 1; i >= 0; i--) {
+				let fileName = /-up\.sql/.test(files[i])
 
-			if (fileName != undefined) {
-				let pathFile = String(path + '\\' + fileName);
-				workspace.openTextDocument(pathFile).then(doc => {
-					window.showTextDocument(doc);
-				});
-			} else {
-				window.showInformationMessage('File is not found!');
+				if (fileName) {
+					let pathFile = String(pathSql + '/' + files[i]);
+					workspace.openTextDocument(pathFile).then(doc => {
+						window.showTextDocument(doc);
+					});
+					break;
+				}
 			}
 		}
 	});

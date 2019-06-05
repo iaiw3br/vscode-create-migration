@@ -13,8 +13,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const vscode_1 = require("vscode");
-// import * as path from 'path';
-const migrationFolder = Date.now();
 const fs = require("fs");
 const DBMigrate = require("db-migrate");
 const projectName = vscode_1.workspace.rootPath;
@@ -33,27 +31,24 @@ function createFileMigration(numberTask) {
     return __awaiter(this, void 0, void 0, function* () {
         const optionCwd = { cwd: projectName };
         const dbm = DBMigrate.getInstance(true, optionCwd, () => { });
-        yield dbm.create(numberTask, migrationFolder);
-        openFileUpSql(String(projectName), numberTask);
+        yield dbm.create(numberTask);
+        openFileUpSql();
     });
 }
 exports.createFileMigration = createFileMigration;
-function openFileUpSql(projectName, numberTask) {
-    const path = projectName + '/migrations/' + migrationFolder + '/sqls';
-    fs.readdir(path, (err, files) => {
-        if (err) {
-            vscode_1.window.showInformationMessage(path);
-        }
+function openFileUpSql() {
+    const pathSql = projectName + '/migrations/sqls';
+    fs.readdir(pathSql, (err, files) => {
         if (files) {
-            let fileName = files.find(fileName => /-up\.sql/.test(fileName));
-            if (fileName != undefined) {
-                let pathFile = String(path + '\\' + fileName);
-                vscode_1.workspace.openTextDocument(pathFile).then(doc => {
-                    vscode_1.window.showTextDocument(doc);
-                });
-            }
-            else {
-                vscode_1.window.showInformationMessage('File is not found!');
+            for (let i = files.length - 1; i >= 0; i--) {
+                let fileName = /-up\.sql/.test(files[i]);
+                if (fileName) {
+                    let pathFile = String(pathSql + '/' + files[i]);
+                    vscode_1.workspace.openTextDocument(pathFile).then(doc => {
+                        vscode_1.window.showTextDocument(doc);
+                    });
+                    break;
+                }
             }
         }
     });
