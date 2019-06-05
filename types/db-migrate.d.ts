@@ -1,0 +1,21 @@
+export const dataType: {
+	BIGINT: string;
+	BIG_INTEGER: string;
+	BINARY: string;
+	BLOB: string;
+	BOOLEAN: string;
+	CHAR: string;
+	DATE: string;
+	DATE_TIME: string;
+	DECIMAL: string;
+	INTEGER: string;
+	REAL: string;
+	SMALLINT: string;
+	SMALL_INTEGER: string;
+	STRING: string;
+	TEXT: string;
+	TIME: string;
+	TIMESTAMP: string;
+};
+export function getInstance(isModule: any, options: any, callback: any): any;
+export const version: string;
