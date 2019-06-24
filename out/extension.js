@@ -23,7 +23,12 @@ function activate(context) {
             valueSelection: [3, 4],
             placeHolder: 'Number task'
         });
-        createFileMigration(String(numberTask));
+        if (numberTask != undefined) {
+            createFileMigration(String(numberTask));
+        }
+        else {
+            vscode_1.window.showInformationMessage('Migration not created');
+        }
     })));
 }
 exports.activate = activate;

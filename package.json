@@ -16,13 +16,30 @@
 	],
 	"main": "./out/extension.js",
 	"contributes": {
-		"commands": [
-			{
-				"command": "samples.BoxInput",
-				"title": "Create migration"
+		"configuration": {
+		  "type": "object",
+		  "title": "create-migration",
+		  "properties": {
+		  "create-migration.autoRun": {
+			  "type": "boolean",
+			  "default": false,
+			  "description": ""
+			},
+			"create-migration.env": {
+				"scope": "resource",
+				"type": "string",
+				"default": "localdev32",
+				"description": ""
+			},
+			"create-migration.prefixTask": {
+				"scope": "resource",
+				"type": "string",
+				"default": "LW-",
+				"description": ""
 			}
-		]
-	},
+		  }
+		}
+	  },
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
 		"compile": "tsc -p ./",
@@ -35,16 +52,16 @@
 		"url": "https://github.com/ArtyomSleepNeeded/vscode-create-migration.git"
 	},
 	"devDependencies": {
-		"vscode": "^1.1.6",
 		"@types/node": "10.3.6",
-		"@types/vscode": "^1.32.0",
-		"ts-loader": "^6.0.2",
-		"tslint": "^5.16.0",
-		"typescript": "^3.4.5",
+		"@types/vscode": "^1.35.0",
 		"db-migrate-base": "^2.0.0",
 		"db-migrate-mysql": "^1.1.10",
 		"db-migrate-pg": "^0.2.5",
-		"js-polyfills": "^0.1.42"
+		"js-polyfills": "^0.1.42",
+		"ts-loader": "^6.0.4",
+		"tslint": "^5.18.0",
+		"typescript": "^3.5.2",
+		"vscode": "^1.1.6"
 	},
 	"dependencies": {
 		"db-migrate": "^0.10.7"

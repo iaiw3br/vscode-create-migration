@@ -17,7 +17,13 @@ export function activate(context: ExtensionContext) {
 			valueSelection: [3, 4],
 			placeHolder: 'Number task'
 		});
-		createFileMigration(String(numberTask));
+		
+		if (numberTask != undefined){ 
+			createFileMigration(String(numberTask));
+		}else {
+			window.showInformationMessage('Migration not created');
+		}
+		
 	}));
 }
 
