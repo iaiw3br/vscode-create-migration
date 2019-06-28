@@ -17,28 +17,34 @@
 	"main": "./out/extension.js",
 	"contributes": {
 		"configuration": {
-		  "type": "object",
-		  "title": "create-migration",
-		  "properties": {
-		  "create-migration.autoRun": {
-			  "type": "boolean",
-			  "default": false,
-			  "description": ""
-			},
-			"create-migration.env": {
-				"scope": "resource",
-				"type": "string",
-				"default": "localdev32",
+			"type": "object",
+			"title": "CreateMigration",
+			"properties": {
+			"CreateMigration.autoRun": {
+				"type": "boolean",
+				"default": false,
 				"description": ""
-			},
-			"create-migration.prefixTask": {
-				"scope": "resource",
-				"type": "string",
-				"default": "LW-",
-				"description": ""
+			  },
+			  "CreateMigration.env": {
+				  "scope": "resource",
+				  "type": "string",
+				  "default": "localdev32",
+				  "description": ""
+			  },
+			  "CreateMigration.prefixTask": {
+				  "scope": "resource",
+				  "type": "string",
+				  "default": "LW-",
+				  "description": ""
+			  }
 			}
-		  }
-		}
+		  },
+		"commands": [
+			{
+				"command": "samples.BoxInput",
+				"title": "Create Migration"
+			}
+		]
 	  },
 	"scripts": {
 		"vscode:prepublish": "npm run compile",

@@ -18,9 +18,9 @@ export function activate(context: ExtensionContext) {
 			placeHolder: 'Number task'
 		});
 		
-		if (numberTask != undefined){ 
+		if ( numberTask != undefined ) { 
 			createFileMigration(String(numberTask));
-		}else {
+		} else {
 			window.showInformationMessage('Migration not created');
 		}
 		
