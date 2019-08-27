@@ -6,7 +6,7 @@
 	"publisher": "Ivanov-Artyom",
 	"icon": "images/icon.jpg",
 	"engines": {
-		"vscode": "^1.34.0"
+		"vscode": "^1.35.0"
 	},
 	"categories": [
 		"Other"
@@ -20,32 +20,56 @@
 			"type": "object",
 			"title": "CreateMigration",
 			"properties": {
-			"CreateMigration.autoRun": {
-				"type": "boolean",
-				"default": false,
-				"description": ""
-			  },
-			  "CreateMigration.env": {
-				  "scope": "resource",
-				  "type": "string",
-				  "default": "localdev32",
-				  "description": ""
-			  },
-			  "CreateMigration.prefixTask": {
-				  "scope": "resource",
-				  "type": "string",
-				  "default": "LW-",
-				  "description": ""
-			  }
+				"CreateMigration.autoRun": {
+					"type": "boolean",
+					"default": false,
+					"description": ""
+				},
+				"CreateMigration.driver": {
+					"scope": "resource",
+					"type": "string",
+					"default": "pg",
+					"description": ""
+				},
+				"CreateMigration.dataBase": {
+					"scope": "resource",
+					"type": "string",
+					"default": "logistic-dev",
+					"description": ""
+				},
+				"CreateMigration.host": {
+					"scope": "resource",
+					"type": "string",
+					"default": "127.0.0.1",
+					"description": ""
+				},
+				"CreateMigration.user": {
+					"scope": "resource",
+					"type": "string",
+					"default": "gsoft",
+					"description": ""
+				},
+				"CreateMigration.password": {
+					"scope": "resource",
+					"type": "string",
+					"default": "gsoftGSOFT",
+					"description": ""
+				},
+				"CreateMigration.prefixTask": {
+					"scope": "resource",
+					"type": "string",
+					"default": "LW-",
+					"description": ""
+				}
 			}
-		  },
+		},
 		"commands": [
 			{
 				"command": "samples.BoxInput",
 				"title": "Create Migration"
 			}
 		]
-	  },
+	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
 		"compile": "tsc -p ./",
@@ -62,14 +86,14 @@
 		"@types/vscode": "^1.35.0",
 		"db-migrate-base": "^2.0.0",
 		"db-migrate-mysql": "^1.1.10",
-		"db-migrate-pg": "^0.2.5",
 		"js-polyfills": "^0.1.42",
 		"ts-loader": "^6.0.4",
 		"tslint": "^5.18.0",
 		"typescript": "^3.5.2",
-		"vscode": "^1.1.6"
+		"vscode": "^1.1.35"
 	},
 	"dependencies": {
-		"db-migrate": "^0.10.7"
+		"db-migrate": "^0.10.7",
+		"db-migrate-pg": "^0.2.5"
 	}
 }

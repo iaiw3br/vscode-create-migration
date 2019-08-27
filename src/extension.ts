@@ -8,31 +8,65 @@ import * as fs from 'fs';
 import DBMigrate = require('db-migrate');
 
 const projectName = workspace.rootPath;
-
+const confMigration = workspace.getConfiguration("CreateMigration");
+const prefix = confMigration.get("prefixTask");
+const autoRun = confMigration.get("autoRun");
 
 export function activate(context: ExtensionContext) {
 	context.subscriptions.push(commands.registerCommand('samples.BoxInput', async () => {
 		const numberTask = await window.showInputBox({
-			value: 'LW-',
+			value: `${prefix}`,
 			valueSelection: [3, 4],
 			placeHolder: 'Number task'
 		});
-		
-		if ( numberTask != undefined ) { 
+
+		if (numberTask != undefined) {
 			createFileMigration(String(numberTask));
 		} else {
 			window.showInformationMessage('Migration not created');
 		}
-		
+
 	}));
 }
 
 export async function createFileMigration(numberTask: string) {
 
 	const optionCwd = { cwd: projectName };
-	const dbm = DBMigrate.getInstance(true, optionCwd, () => { });
+	const dbm = DBMigrate.getInstance(true, optionCwd, () => {});
+	
 	await dbm.create(numberTask);
+
+	if ( autoRun ) {
+		DBMigrateUp();
+	}
+
 	openFileUpSql();
+}
+
+async function DBMigrateUp() {
+
+	const driver = confMigration.get("driver");
+	const database = confMigration.get("dataBase");
+	const host = confMigration.get("host");
+	const user = confMigration.get("user");
+	const password = confMigration.get("password");
+
+	const dbmigrate = DBMigrate.getInstance(true, {
+		config: {
+			dev:{
+				driver,
+				database,
+				host,
+				password,
+				user,
+				multipleStatements: true
+			},
+		},
+		cwd: projectName
+	}, () => {});
+
+	await dbmigrate.up()
+	
 }
 
 function openFileUpSql() {

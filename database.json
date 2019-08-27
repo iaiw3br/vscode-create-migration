@@ -1,6 +1,10 @@
 {
-  "development": {
-
-  },
-  "sql-file": true
+  "default": "localdev32",
+  "localdev32": {
+     "driver": "pg",
+     "user": "gsoft",
+     "host": "127.0.0.1",
+     "password": "gsoftGSOFT",
+     "database": "logistic-dev"
+  }
 }
