@@ -10,7 +10,7 @@ import DBMigrate = require('db-migrate');
 const projectName = workspace.rootPath;
 const confMigration = workspace.getConfiguration("CreateMigration");
 const prefix = confMigration.get("prefixTask");
-const autoRun = confMigration.get("autoRun");
+const lazyMode = confMigration.get("lazyMode");
 
 export function activate(context: ExtensionContext) {
 	context.subscriptions.push(commands.registerCommand('samples.BoxInput', async () => {
@@ -36,7 +36,7 @@ export async function createFileMigration(numberTask: string) {
 	
 	await dbm.create(numberTask);
 
-	if ( autoRun ) {
+	if ( lazyMode ) {
 		DBMigrateUp();
 	}
 

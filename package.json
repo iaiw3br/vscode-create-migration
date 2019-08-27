@@ -20,7 +20,7 @@
 			"type": "object",
 			"title": "CreateMigration",
 			"properties": {
-				"CreateMigration.autoRun": {
+				"CreateMigration.lazyMode": {
 					"type": "boolean",
 					"default": false,
 					"description": ""
