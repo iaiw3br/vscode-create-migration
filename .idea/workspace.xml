@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d723eb14-e5d9-45e5-8ad3-29ce898f4e4b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/how its working.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/extension.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/extension.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -55,7 +52,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1566918861684</updated>
-      <workItem from="1566918863126" duration="2233000" />
+      <workItem from="1566918863126" duration="2467000" />
     </task>
     <servers />
   </component>
