@@ -1,3 +1,4 @@
+![migration](images/banner.gif)
 # Create Migration
 
 Analogue of command `db-migrate create` but file `up.sql` will be open.
